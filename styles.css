@@ -590,7 +590,8 @@ strong {
    ============================================ */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  /* 2 columns on desktop for a balanced 2x2 layout with 4 service cards */
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-xl);
 }
 
