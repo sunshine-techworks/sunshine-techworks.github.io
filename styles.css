@@ -1,0 +1,1431 @@
+/* ============================================
+   SUNSHINE TECHWORKS - Design System
+   Single shared stylesheet for the company site.
+   PR Notify pages retain their own inline styles.
+   ============================================ */
+
+
+/* ============================================
+   1. CUSTOM PROPERTIES
+   Centralised design tokens so every component
+   draws from the same palette and scale.
+   ============================================ */
+:root {
+  /* --- Colours --- */
+  --color-navy:        #0F172A;
+  --color-navy-light:  #1E293B;
+  --color-navy-mid:    #334155;
+  --color-amber:       #F59E0B;
+  --color-amber-light: #FBBF24;
+  --color-amber-dark:  #D97706;
+  --color-amber-soft:  #FEF3C7;
+  --color-slate-50:    #F8FAFC;
+  --color-slate-100:   #F1F5F9;
+  --color-slate-200:   #E2E8F0;
+  --color-slate-400:   #94A3B8;
+  --color-slate-500:   #64748B;
+  --color-slate-600:   #475569;
+  --color-slate-700:   #334155;
+  --color-slate-900:   #0F172A;
+  --color-white:       #FFFFFF;
+
+  /* --- Typography --- */
+  --font-heading: 'Outfit', system-ui, sans-serif;
+  --font-body:    'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Fluid type scale */
+  --font-size-sm:   0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg:   1.125rem;
+  --font-size-xl:   1.25rem;
+  --font-size-2xl:  1.5rem;
+  --font-size-3xl:  1.875rem;
+  --font-size-4xl:  2.25rem;
+  --font-size-5xl:  3rem;
+
+  /* --- Spacing --- */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* --- Layout --- */
+  --container-max:    1200px;
+  --container-narrow: 800px;
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-full: 9999px;
+
+  /* --- Transitions --- */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+
+  /* --- Shadows --- */
+  --shadow-sm:   0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md:   0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg:   0 12px 32px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 0 24px rgba(245, 158, 11, 0.2);
+}
+
+
+/* ============================================
+   2. RESET & BASE
+   Normalise browser defaults and set sensible
+   global styles.
+   ============================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevent iOS text size inflation on rotation */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  color: var(--color-navy);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* Respect user motion preferences globally */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+
+/* ============================================
+   3. TYPOGRAPHY
+   Heading hierarchy uses Outfit for a geometric,
+   confident feel. Body uses Plus Jakarta Sans
+   for warmth and readability.
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-navy);
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw + 1rem, 3.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw + 0.5rem, 2.25rem);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+}
+
+p {
+  margin-bottom: var(--space-md);
+  color: var(--color-slate-600);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* Amber accent for key phrases */
+.text-accent {
+  color: var(--color-amber);
+}
+
+/* Light text for use on dark backgrounds */
+.text-light {
+  color: var(--color-slate-400);
+}
+
+.text-white {
+  color: var(--color-white);
+}
+
+strong {
+  font-weight: 600;
+}
+
+
+/* ============================================
+   4. LAYOUT
+   Container widths and standard section spacing.
+   Uses clamp() for fluid gutters so the layout
+   breathes on every viewport width.
+   ============================================ */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+}
+
+.container-narrow {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+}
+
+/* Standard vertical rhythm for page sections */
+.section {
+  padding: var(--space-4xl) 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.section-header p {
+  margin-top: var(--space-md);
+  font-size: var(--font-size-lg);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Alternating background for visual rhythm */
+.bg-slate {
+  background: var(--color-slate-50);
+}
+
+.bg-navy {
+  background: var(--color-navy);
+}
+
+/* Light-coloured section header text on dark backgrounds */
+.section-header-light h2 {
+  color: var(--color-white);
+}
+
+.section-header-light p {
+  color: var(--color-slate-400);
+}
+
+
+/* ============================================
+   5. NAVIGATION
+   Sticky nav with translucent blur backdrop.
+   Hamburger toggle for mobile, animated bars
+   that morph into an X.
+   ============================================ */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-slate-200);
+  padding: var(--space-md) 0;
+}
+
+.site-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- Logo --- */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--font-size-xl);
+  color: var(--color-navy);
+  text-decoration: none;
+}
+
+/* Geometric mark: amber square with "ST" initials */
+.nav-logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--color-amber);
+  color: var(--color-navy);
+  font-weight: 800;
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.05em;
+}
+
+/* --- Nav links --- */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.nav-link {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-slate-600);
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--color-navy);
+}
+
+/* Active page indicator: amber underline */
+.nav-link.is-active {
+  color: var(--color-navy);
+}
+
+.nav-link.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-amber);
+  border-radius: var(--radius-full);
+}
+
+/* CTA button in nav */
+.nav-cta {
+  /* Uses .btn .btn-primary styles below, sized smaller for nav */
+  font-size: var(--font-size-sm) !important;
+  padding: 8px 20px !important;
+}
+
+/* --- Hamburger toggle (hidden on desktop) --- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-navy);
+  border-radius: var(--radius-full);
+  transition: transform var(--transition-base), opacity var(--transition-base);
+  transform-origin: center;
+}
+
+/* Animated X state when menu is open */
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ============================================
+   6. HERO
+   Full-viewport hero with layered CSS animated
+   background: gradient shift + dot grid + amber
+   radial glow. No JavaScript needed.
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh; /* Small viewport height for mobile (avoids address bar) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-navy);
+}
+
+/* Animated gradient background layer */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  /* Slowly shifting radial gradient creates subtle movement */
+  background: radial-gradient(
+    ellipse 80% 60% at 30% 50%,
+    var(--color-navy-light) 0%,
+    var(--color-navy) 70%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 20s ease-in-out infinite;
+}
+
+/* Dot grid pattern overlay suggesting data/neural networks */
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(148, 163, 184, 0.15) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  animation: dotPulse 8s ease-in-out infinite;
+}
+
+/* Amber glow accent: warm "sunshine" highlight */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 65% 35%,
+    rgba(245, 158, 11, 0.08) 0%,
+    transparent 50%
+  );
+  animation: glowDrift 15s ease-in-out infinite;
+}
+
+.hero-content {
+  position: relative; /* Above the background layers */
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-4xl) 0;
+  max-width: 800px;
+}
+
+/* Small label above the main heading */
+.hero-eyebrow {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-amber);
+  margin-bottom: var(--space-lg);
+}
+
+.hero-title {
+  color: var(--color-white);
+  margin-bottom: var(--space-xl);
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-slate-400);
+  max-width: 600px;
+  margin: 0 auto var(--space-2xl);
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Page-level header (shorter hero for inner pages) */
+.page-header {
+  position: relative;
+  background: var(--color-navy);
+  padding: var(--space-4xl) 0 var(--space-3xl);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Reuse dot grid on inner page headers at lower intensity */
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(148, 163, 184, 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+}
+
+.page-header .container {
+  position: relative;
+  z-index: 1;
+}
+
+.page-header h1 {
+  color: var(--color-white);
+  margin-bottom: var(--space-md);
+}
+
+.page-header-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-slate-400);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+/* ============================================
+   7. BUTTONS
+   Primary (amber bg, navy text) for strong CTAs.
+   Secondary (outline) for softer actions.
+   Navy on amber passes WCAG AA at 7.4:1.
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  padding: 12px 28px;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Amber background, navy text for maximum contrast */
+.btn-primary {
+  background: var(--color-amber);
+  color: var(--color-navy);
+  border-color: var(--color-amber);
+}
+
+.btn-primary:hover {
+  background: var(--color-amber-light);
+  border-color: var(--color-amber-light);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Outline button for secondary actions */
+.btn-secondary {
+  background: transparent;
+  color: var(--color-white);
+  border-color: var(--color-slate-400);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+
+/* Larger button variant for hero CTAs */
+.btn-lg {
+  padding: 16px 36px;
+  font-size: var(--font-size-lg);
+}
+
+/* Full-width button for forms */
+.btn-full {
+  width: 100%;
+}
+
+
+/* ============================================
+   8. CARDS
+   Shared card base with hover lift effect.
+   Service cards get an amber top-border reveal
+   on hover for visual emphasis.
+   ============================================ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-xl);
+}
+
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-2xl);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Service cards: amber top border appears on hover */
+.service-card {
+  display: block;
+  /* Invisible top border that becomes amber on hover */
+  border-top: 3px solid transparent;
+  text-decoration: none;
+}
+
+.service-card:hover {
+  border-top-color: var(--color-amber);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-amber-soft);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  color: var(--color-amber-dark);
+}
+
+.card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.card h3 {
+  margin-bottom: var(--space-sm);
+}
+
+.card p {
+  font-size: var(--font-size-sm);
+}
+
+/* "Learn more" link at card bottom */
+.card-link {
+  display: inline-block;
+  margin-top: var(--space-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-amber-dark);
+  transition: color var(--transition-fast);
+}
+
+.card:hover .card-link {
+  color: var(--color-amber);
+}
+
+/* Smaller nav cards on services page */
+.services-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+}
+
+.service-nav-card {
+  display: block;
+  text-align: center;
+  padding: var(--space-xl);
+  background: var(--color-white);
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.service-nav-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-amber);
+}
+
+.service-nav-card h3 {
+  font-size: var(--font-size-base);
+  margin-top: var(--space-md);
+}
+
+.service-nav-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-amber-soft);
+  border-radius: var(--radius-md);
+  color: var(--color-amber-dark);
+}
+
+.service-nav-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* ============================================
+   9. FORMS
+   Clean form styling with generous padding
+   and focus states using the amber accent.
+   ============================================ */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: var(--space-lg);
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-sm);
+  color: var(--color-navy);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  color: var(--color-navy);
+  background: var(--color-white);
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--color-amber);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-select {
+  appearance: none;
+  /* Custom dropdown arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%2364748B' d='M4.5 6l3.5 4 3.5-4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+}
+
+/* Form success message (shown after Formspree redirect) */
+.form-success {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-xl);
+}
+
+.form-success-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-amber-soft);
+  color: var(--color-amber-dark);
+  font-size: var(--font-size-3xl);
+  border-radius: var(--radius-full);
+}
+
+.form-success h3 {
+  margin-bottom: var(--space-sm);
+}
+
+
+/* ============================================
+   10. PAGE-SPECIFIC COMPONENTS
+   Differentiators, service details, values,
+   approach timeline, process steps, CTA banner.
+   ============================================ */
+
+/* --- Differentiators (Home page) --- */
+.differentiators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-2xl);
+}
+
+.differentiator-number {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  color: var(--color-amber);
+  margin-bottom: var(--space-md);
+}
+
+.differentiator h3 {
+  margin-bottom: var(--space-sm);
+}
+
+/* --- Service detail sections (Services page) --- */
+.service-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+/* Alternate layout: even sections flip content/visual sides */
+.service-detail:nth-child(even) .service-detail-grid {
+  direction: rtl;
+}
+
+.service-detail:nth-child(even) .service-detail-grid > * {
+  direction: ltr;
+}
+
+.service-detail-label {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-amber);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-sm);
+}
+
+.service-detail-content h2 {
+  margin-bottom: var(--space-lg);
+}
+
+.service-detail-content h4 {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+  color: var(--color-navy);
+}
+
+.service-deliverables {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.service-deliverables li {
+  padding-left: var(--space-lg);
+  position: relative;
+  color: var(--color-slate-600);
+  font-size: var(--font-size-sm);
+}
+
+/* Amber bullet marker */
+.service-deliverables li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  background: var(--color-amber);
+  border-radius: var(--radius-full);
+}
+
+/* Decorative geometric element alongside service descriptions */
+.service-detail-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+}
+
+.service-visual-shape {
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-lg);
+  background: var(--color-slate-50);
+  border: 1px solid var(--color-slate-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-amber-dark);
+}
+
+.service-visual-shape svg {
+  width: 80px;
+  height: 80px;
+  opacity: 0.6;
+}
+
+/* --- Values grid (About page) --- */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-xl);
+}
+
+.value-card {
+  background: var(--color-white);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-slate-200);
+}
+
+.value-card h3 {
+  margin-bottom: var(--space-sm);
+  color: var(--color-navy);
+}
+
+.value-card p {
+  font-size: var(--font-size-sm);
+}
+
+/* --- Approach timeline (About page) --- */
+.approach-steps {
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Vertical connecting line */
+.approach-steps::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-slate-200);
+}
+
+.approach-step {
+  display: flex;
+  gap: var(--space-xl);
+  padding-bottom: var(--space-2xl);
+  position: relative;
+}
+
+.approach-step:last-child {
+  padding-bottom: 0;
+}
+
+/* Numbered amber circle marker */
+.approach-step-marker {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--color-amber);
+  color: var(--color-navy);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Sit on top of the connecting line */
+  position: relative;
+  z-index: 1;
+}
+
+.approach-step-content h3 {
+  margin-bottom: var(--space-xs);
+}
+
+.approach-step-content p {
+  font-size: var(--font-size-sm);
+}
+
+/* --- Process steps (Services page, horizontal on desktop) --- */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-xl);
+  text-align: center;
+}
+
+.process-step-number {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--color-amber);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  border-radius: var(--radius-full);
+}
+
+.process-step h3 {
+  color: var(--color-white);
+  margin-bottom: var(--space-sm);
+}
+
+.process-step p {
+  font-size: var(--font-size-sm);
+  color: var(--color-slate-400);
+}
+
+/* --- CTA banner --- */
+.cta-banner {
+  background: var(--color-navy);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle decorative amber accent behind the CTA */
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.06) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: var(--radius-full);
+}
+
+.cta-banner-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.cta-banner-content h2 {
+  color: var(--color-white);
+  margin-bottom: var(--space-md);
+}
+
+.cta-banner-content p {
+  color: var(--color-slate-400);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-2xl);
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ============================================
+   11. FOOTER
+   Navy background with 3-column grid layout.
+   Collapses to single column on mobile.
+   ============================================ */
+.site-footer {
+  background: var(--color-navy);
+  padding: var(--space-3xl) 0 var(--space-xl);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-3xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.footer-logo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--font-size-xl);
+  color: var(--color-white);
+  display: block;
+  margin-bottom: var(--space-md);
+}
+
+.footer-brand p {
+  color: var(--color-slate-400);
+  font-size: var(--font-size-sm);
+  max-width: 300px;
+}
+
+.footer-nav h4 {
+  color: var(--color-white);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-lg);
+}
+
+.footer-nav a {
+  display: block;
+  color: var(--color-slate-400);
+  font-size: var(--font-size-sm);
+  padding: var(--space-xs) 0;
+  transition: color var(--transition-fast);
+}
+
+.footer-nav a:hover {
+  color: var(--color-amber);
+}
+
+.footer-legal {
+  border-top: 1px solid var(--color-navy-mid);
+  padding-top: var(--space-xl);
+  text-align: center;
+}
+
+.footer-legal p {
+  color: var(--color-slate-500);
+  font-size: var(--font-size-sm);
+}
+
+
+/* ============================================
+   12. ANIMATIONS & KEYFRAMES
+   Ambient hero animations (CSS-only) and scroll-
+   triggered reveal animations (need small JS
+   IntersectionObserver to add .is-visible class).
+   ============================================ */
+
+/* Hero gradient position shifts slowly for ambient motion */
+@keyframes gradientShift {
+  0%, 100% { background-position: 30% 50%; }
+  50%      { background-position: 70% 50%; }
+}
+
+/* Dot grid fades in/out subtly */
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+/* Amber glow drifts slowly across the hero */
+@keyframes glowDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(5%, -3%) scale(1.05); }
+  66%      { transform: translate(-3%, 5%) scale(0.98); }
+}
+
+/* Entry animation for scroll-revealed elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Elements start invisible and offset, revealed by JS observer */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.animate-on-scroll.is-visible {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Staggered delays so groups of elements cascade in */
+.stagger-1.is-visible { animation-delay: 100ms; }
+.stagger-2.is-visible { animation-delay: 200ms; }
+.stagger-3.is-visible { animation-delay: 300ms; }
+.stagger-4.is-visible { animation-delay: 400ms; }
+.stagger-5.is-visible { animation-delay: 500ms; }
+.stagger-6.is-visible { animation-delay: 600ms; }
+
+/* Hero elements animate on page load, not on scroll */
+.hero .hero-eyebrow,
+.hero .hero-title,
+.hero .hero-subtitle,
+.hero .hero-actions {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.hero .hero-eyebrow  { animation-delay: 0ms; }
+.hero .hero-title    { animation-delay: 150ms; }
+.hero .hero-subtitle { animation-delay: 300ms; }
+.hero .hero-actions  { animation-delay: 450ms; }
+
+
+/* ============================================
+   13. UTILITY CLASSES
+   Screen reader helpers, text alignment, and
+   focus styles for accessibility.
+   ============================================ */
+
+/* Visually hidden but accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip-to-content link: visible only on keyboard focus */
+.sr-only-focusable:focus {
+  position: fixed;
+  top: var(--space-md);
+  left: var(--space-md);
+  z-index: 200;
+  width: auto;
+  height: auto;
+  padding: var(--space-sm) var(--space-md);
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background: var(--color-amber);
+  color: var(--color-navy);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Custom focus styles: amber outline, only on keyboard nav */
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* No-JS fallback: if JS fails to remove .no-js from <html>,
+   all scroll-animated elements remain visible */
+.no-js .animate-on-scroll {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* ============================================
+   14. RESPONSIVE BREAKPOINTS
+   Desktop-first since the design was conceived
+   for wide viewports. Three breakpoints handle
+   tablet landscape, tablet portrait, and mobile.
+   ============================================ */
+
+/* --- Tablet landscape (1024px and below) --- */
+@media (max-width: 1024px) {
+  .service-detail-grid {
+    gap: var(--space-2xl);
+  }
+
+  .footer-grid {
+    gap: var(--space-2xl);
+  }
+}
+
+/* --- Tablet portrait (768px and below) --- */
+@media (max-width: 768px) {
+  /* Navigation collapses to hamburger */
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    /* Hidden by default on mobile, revealed by JS toggle */
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-slate-200);
+    padding: var(--space-md) clamp(1rem, 4vw, 3rem);
+    gap: 0;
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: var(--space-md) 0;
+    font-size: var(--font-size-base);
+    /* 48px minimum touch target */
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-link.is-active::after {
+    display: none;
+  }
+
+  .nav-cta {
+    margin-top: var(--space-sm);
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Service detail sections stack vertically */
+  .service-detail-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  /* Undo RTL direction trick on stacked layout */
+  .service-detail:nth-child(even) .service-detail-grid {
+    direction: ltr;
+  }
+
+  .service-detail-visual {
+    min-height: 160px;
+  }
+
+  /* Process steps go 2-column */
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Footer collapses */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  /* Section spacing tightens */
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+}
+
+/* --- Mobile (600px and below) --- */
+@media (max-width: 600px) {
+  /* Hero buttons stack vertically */
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* All grids collapse to single column */
+  .card-grid,
+  .differentiators-grid,
+  .values-grid,
+  .services-nav-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Process steps go single column */
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Footer single column */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    text-align: center;
+  }
+
+  .footer-brand p {
+    max-width: none;
+  }
+
+  /* Tighter section spacing on mobile */
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .page-header {
+    padding: var(--space-3xl) 0 var(--space-2xl);
+  }
+}
+
+
+/* ============================================
+   15. REDUCED MOTION
+   Respect the user's accessibility preference
+   by disabling all animations and transitions.
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Ensure animated elements are visible immediately */
+  .animate-on-scroll,
+  .hero .hero-eyebrow,
+  .hero .hero-title,
+  .hero .hero-subtitle,
+  .hero .hero-actions {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
