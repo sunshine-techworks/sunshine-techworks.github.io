@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PR Notify - Personal GitHub PR Notifications for Slack</title>
-  <meta name="description" content="Get personal Slack DMs for GitHub PR reviews, mentions, and comments. Filter bot noise, set preferences, never miss a review request.">
+  <title>PR Notify - Never Keep a PR Waiting</title>
+  <meta name="description" content="AI writes code in minutes. Reviews still take hours. PR Notify sends personal Slack DMs the moment someone needs your review.">
   <style>
     :root {
       --primary: #4A154B;
@@ -301,8 +301,8 @@
 
 <section class="hero">
   <div class="container">
-    <h1>Personal <span>PR notifications</span><br>delivered to your Slack DMs</h1>
-    <p>Stop missing review requests and mentions buried in noisy channels. Get the notifications that matter, directly in Slack.</p>
+    <h1>Never keep a <span>PR waiting</span></h1>
+    <p>AI writes code in minutes. Reviews still take hours. Get personal Slack DMs the moment someone needs your review, comments on your PR, or mentions you.</p>
     <a href="https://wbotxno8l6.execute-api.us-east-1.amazonaws.com/prod/slack/oauth/authorize" class="cta-button">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
       Add to Slack
@@ -312,37 +312,37 @@
 
 <section class="features" id="features">
   <div class="container">
-    <h2>Built for developers who value focus</h2>
+    <h2>Review speed is the new bottleneck</h2>
     <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">&#9889;</div>
+        <h3>Instant review alerts</h3>
+        <p>Know the moment someone requests your review. In the age of AI-assisted development, every hour a PR sits waiting is wasted velocity.</p>
+      </div>
       <div class="feature-card">
         <div class="feature-icon">&#128172;</div>
         <h3>Personal DMs, not noisy channels</h3>
         <p>Notifications go directly to your Slack DMs. No more scrolling through channel noise to find what needs your attention.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">&#9881;&#65039;</div>
-        <h3>Granular preference controls</h3>
-        <p>Toggle exactly which notifications you receive: review requests, reviews, comments, mentions, and CI failures. All from the App Home.</p>
-      </div>
-      <div class="feature-card">
         <div class="feature-icon">&#129302;</div>
-        <h3>Bot noise filtering</h3>
-        <p>Automatically detects bot comments (Dependabot, Codecov, etc.) and lets you filter them independently from human activity.</p>
+        <h3>Filter AI and bot noise</h3>
+        <p>AI tools and bots generate more PR activity than ever. Automatically separate human comments from bot noise (Dependabot, Codecov, CI).</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">&#9889;</div>
-        <h3>Real-time delivery</h3>
-        <p>Webhooks process in seconds. Know the moment someone requests your review or mentions you in a PR discussion.</p>
+        <div class="feature-icon">&#9881;&#65039;</div>
+        <h3>Your notifications, your rules</h3>
+        <p>Toggle exactly what you receive: review requests, reviews, human comments, bot comments, mentions. All from the App Home.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#127919;</div>
+        <h3>One click to the right place</h3>
+        <p>Each notification has contextual action buttons that deep-link to the exact review, comment, or mention. No hunting through the PR page.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">&#128279;</div>
-        <h3>Self-service account linking</h3>
-        <p>Users link their own GitHub accounts with a simple slash command. No admin setup required per user.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">&#128232;</div>
-        <h3>Rich Slack notifications</h3>
-        <p>Block Kit formatted messages with PR details, branch info, actor avatars, and quick-action buttons to jump straight to the code.</p>
+        <h3>Two-minute setup</h3>
+        <p>Install the Slack app, add the GitHub app, link your account with one slash command. No admin configuration needed per user.</p>
       </div>
     </div>
   </div>
@@ -350,8 +350,8 @@
 
 <section class="preview">
   <div class="container">
-    <h2>Notifications that help, not distract</h2>
-    <p>Rich, actionable messages delivered as Slack DMs</p>
+    <h2>From notification to code review in one click</h2>
+    <p>Rich, actionable Slack DMs that take you directly where you need to be</p>
     <div class="notification-mock">
       <div class="notif-header">Review Requested</div>
       <div class="notif-title">Add user authentication middleware</div>
@@ -368,8 +368,8 @@
         <div><strong>Target:</strong> <code>main</code></div>
       </div>
       <div class="notif-buttons">
-        <div class="notif-btn">Review Changes</div>
-        <div class="notif-btn notif-btn-primary">Open PR</div>
+        <div class="notif-btn notif-btn-primary">Review Changes</div>
+        <div class="notif-btn">Open PR</div>
       </div>
     </div>
   </div>
@@ -400,7 +400,7 @@
 
 <section class="final-cta">
   <div class="container">
-    <h2>Never miss a review request again</h2>
+    <h2>Your team ships faster when reviews don't wait</h2>
     <p>Free for teams of any size. Set up in under 2 minutes.</p>
     <a href="https://wbotxno8l6.execute-api.us-east-1.amazonaws.com/prod/slack/oauth/authorize" class="cta-button">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
